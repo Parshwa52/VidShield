@@ -1,0 +1,141 @@
+{
+    "Header": {
+
+        "title": "VidShield",
+        "paragraph": "A Creator platform with Video NFT and Piracy protection"
+
+    },
+    "About": {
+        "paragraph": "VidShield is decentralized video platform with Video NFTs and piracy protected web3 video player. It is both creator and viewer friendly platform. Here, creators can work hard and upload their creativity via videos with simple steps. Creators need not worry about video storage, video piracy and not even their earnings. Creator can inroduce their video NFTs. Everything is taken careof. On the other side, viewers can also consume as much content as they want. Viewers can pay minimal yearly subscription fee for their favorite creator and enjoy viewing the content.",
+        "Why": [
+            "Decentralised Video platform",
+            "Video NFTs for creators",
+            "Piracy protected web3 video player",
+            "Minimal subscription fees for viewers",
+            "Decentralised Filecoin Storage",
+            "Digital Watermarking"
+        ],
+        "Why2": [
+            "View only your favorite creators",
+            "Simplest onboarding experience",
+            "Video upload in easy steps",
+            "80% subscription fee for creator",
+            "20% subscription fee for platform",
+            "Completely Advertisement-free"
+        ]
+    },
+    "Services": [{
+            "icon": "fa fa-wordpress",
+            "name": "Lorem ipsum dolor",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+        },
+        {
+            "icon": "fa fa-cart-arrow-down",
+            "name": "Consectetur adipiscing",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+        },
+        {
+            "icon": "fa fa-cloud-download",
+            "name": "Lorem ipsum dolor",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+        },
+        {
+            "icon": "fa fa-language",
+            "name": "Consectetur adipiscing",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+        },
+        {
+            "icon": "fa fa-plane",
+            "name": "Lorem ipsum dolor",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+        },
+        {
+            "icon": "fa fa-pie-chart",
+            "name": "Consectetur adipiscing",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at."
+        }
+
+
+    ],
+    "Testimonials": [{
+            "img": "img/testimonials/01.jpg",
+            "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
+            "name": "John Doe"
+        },
+        {
+            "img": "img/testimonials/02.jpg",
+            "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
+            "name": "Johnathan Doe"
+        },
+        {
+            "img": "img/testimonials/03.jpg",
+            "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
+            "name": "John Doe"
+        },
+        {
+            "img": "img/testimonials/04.jpg",
+            "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
+            "name": "Johnathan Doe"
+        },
+        {
+            "img": "img/testimonials/05.jpg",
+            "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
+            "name": "John Doe"
+        },
+        {
+            "img": "img/testimonials/06.jpg",
+            "text": "\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis sed dapibus leo nec ornare diam sedasd commodo nibh ante facilisis bibendum dolor feugiat at.\"",
+            "name": "Johnathan Doe"
+        }
+    ],
+    "Team": [{
+            "img": "img/team/01.jpg",
+            "name": "John Doe",
+            "job": "Director"
+        },
+        {
+            "img": "img/team/02.jpg",
+            "name": "Mike Doe",
+            "job": "Senior Designer"
+        }, {
+            "img": "img/team/03.jpg",
+            "name": "Jane Doe",
+            "job": "Senior Designer"
+        },
+        {
+            "img": "img/team/04.jpg",
+            "name": "Karen Doe",
+            "job": "Project Manager"
+        }
+    ],
+    "Contact": {
+        "address": "Mumbai,Maharashtra,India ",
+        "phone": "1234567890",
+        "email": "info@company.com",
+        "facebook": "fb.com",
+        "twitter": "twitter.com",
+        "youtube": "youtube.com"
+    },
+    "Features": [
+        {
+            "icon": "img/features/decentralisedvideoplatform.jpg",
+            "title": "Decentralised Video Platform",
+            "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+        },
+        {
+            "icon": "img/features/videonft.gif",
+            "title": "Video NFTs",
+            "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+        },
+        {
+            "icon": "img/features/piracyprotection.jpg",
+            "title": "Piracy Protection",
+            "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+        },
+        {
+            "icon": "img/features/smoothonboarding.jpg",
+            "title": "Smooth Onboarding",
+            "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+/* Styles go here */
+/* starter code */
+/*body {
+    font-family: -apple-system, BlinkMacSystemFont, 
+    "Segoe UI", "Roboto", "Oxygen", 
+    "Ubuntu", "Cantarell", "Fira Sans", 
+    "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+p {
+    width: 800px;
+    margin: 0 auto 1rem;
+}*/
+
+#abcd
+{
+    font-family:"Roboto";
+    opacity:0.6;
+    color:rgba(255, 255, 255, 1.0);
+}
+
+
+/* tutorial code */
+header {
+    
+    height: 100vh;
+    margin-bottom: 2rem;
+    background-size: cover;
+}
+
+/*body {
+    margin: 0;
+}*/
+
+video::-webkit-media-controls-fullscreen-button {
+    display: none;
+}
+
+video {
+    min-width: 110vw;
+    min-height: 110vh;
+    object-fit: cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    opacity:0.6;
+}
