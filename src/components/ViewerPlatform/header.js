@@ -1,137 +1,228 @@
-import React, { Component } from "react";
+//import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import VidShield from '../../abis/VidShield.json';
 import '../../App.css';
 import './Director.css';
+import {Biconomy} from "@biconomy/mexa";
 import Web3 from 'web3';
 //import history from '../history';
 import {Link} from 'react-router-dom';
-export class Header extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      account: '',
-      vidshield:null
-    }
-    
-    this.registerViewer = this.registerViewer.bind(this);
-  }
+import bickey from "../../keys.json";
+let sigUtil = require("eth-sig-util");
+const { config } = require("../config");
 
-  async componentDidMount()
-  {
-    await this.loadWeb3();
-    await this.loadBlockchainData();
-    
-  }
-  async loadWeb3()
-  {
-    if (window.ethereum) {
-      window.web3 = new Web3(window.ethereum);
-      try {
-        // Request account access if needed
-        await window.ethereum.enable();
-        console.log(window.web3);
-        //console.log(web3.eth.getAccounts());
-        // Acccounts now exposed
-      } catch (error) {
-        // User denied account access...
+
+const domainType = [
+  { name: "name", type: "string" },
+  { name: "version", type: "string" },
+  { name: "verifyingContract", type: "address" },
+  { name: "salt", type: "bytes32" }
+];
+//{ name: "chainId", type: "uint256" },
+const metaTransactionType = [
+  { name: "nonce", type: "uint256" },
+  { name: "from", type: "address" },
+  { name: "functionSignature", type: "bytes" }
+];
+
+let domainData = {
+  name: "VidShield",
+  version: "1",
+  verifyingContract: config.contract.address,
+  salt: '0x' + (4).toString(16).padStart(64, '0')
+};
+
+let web3,walletweb3;
+let contract;
+function Header(props) {
+
+  const [selectedAddress, setSelectedAddress] = useState("");
+  const [metaTxEnabled, setMetaTxEnabled] = useState(true);
+  useEffect(() => {
+    async function init() {
+      if (
+        typeof window.ethereum !== "undefined" &&
+        window.ethereum.isMetaMask
+      ) {
+        // Ethereum user detected. You can now use the provider.
+        const provider = window["ethereum"];
+        await provider.enable();
+        if (provider.networkVersion === "4") {
+          domainData.chainId = 4;
+        const apikey = `${bickey.BICONOMY_DAPP_KEY}`;
+        const biconomy = new Biconomy(provider,{apiKey: apikey, debug: true});
+        web3 = new Web3(biconomy);
+        walletweb3 = new Web3(provider);
+        biconomy.onEvent(biconomy.READY, () => {
+          console.log("Mexa is ready!");
+          // Initialize your dapp here like getting user accounts etc
+          contract = new web3.eth.Contract(
+            config.contract.abi,
+            config.contract.address
+          );
+          setSelectedAddress(provider.selectedAddress);
+          
+          provider.on("accountsChanged", function(accounts) {
+            setSelectedAddress(accounts[0]);
+          });
+        }).onEvent(biconomy.ERROR, (error, message) => {
+          // Handle error while initializing mexa
+
+        });
+          
+        } else {
+          console.log("Please change the network in metamask to Ropsten");
+        }
+      } else {
+        console.log("Metamask not installed");
       }
     }
-    // Legacy dapp browsers...
-    else if (window.web3) {
-      window.web3 = new Web3(window.web3.currentProvider);
-      console.log(window.web3);
-      // Acccounts always exposed
+    init();
+  }, []);
+
+  const registerViewer = async (event) => {
+    event.preventDefault();
+    if (contract) {
+      if (metaTxEnabled) {
+        console.log("Sending meta transaction");
+        alert("clicked");
+        let userAddress = selectedAddress;
+        let nonce = await contract.methods.getNonce(userAddress).call();
+        
+        let functionSignature = contract.methods.registerViewer(userAddress).encodeABI();
+        let message = {};
+        message.nonce = parseInt(nonce);
+        message.from = userAddress;
+        message.functionSignature = functionSignature;
+
+        const dataToSign = JSON.stringify({
+          types: {
+            EIP712Domain: domainType,
+            MetaTransaction: metaTransactionType
+          },
+          domain: domainData,
+          primaryType: "MetaTransaction",
+          message: message
+        });
+        console.log(domainData);
+        console.log(userAddress);
+        web3.eth.currentProvider.send(
+          {
+            jsonrpc: "2.0",
+            id: 999999999999,
+            method: "eth_signTypedData_v4",
+            params: [userAddress, dataToSign]
+          },
+          function(error, response) {
+            console.info(`User signature is ${response.result}`);
+            if (error || (response && response.error)) {
+              console.log("Could not get user signature");
+            } else if (response && response.result) {
+              let { r, s, v } = getSignatureParameters(response.result);
+              console.log(userAddress);
+              console.log(JSON.stringify(message));
+              console.log(message);
+              console.log(getSignatureParameters(response.result));
+
+              const recovered = sigUtil.recoverTypedSignature_v4({
+                data: JSON.parse(dataToSign),
+                sig: response.result
+              });
+              console.log(`Recovered ${recovered}`);
+              sendTransaction(userAddress, functionSignature, r, s, v);
+            }
+          }
+        );
+      } else {
+        console.log("Sending normal transaction");
+        contract.methods
+          .registerViewer(selectedAddress)
+          .send({ from: selectedAddress })
+          .on("transactionHash", function(hash) {
+            console.log(`Transaction sent to blockchain with hash ${hash}`);
+          })
+          .once("confirmation", function(confirmationNumber, receipt) {
+            console.log("Transaction confirmed");
+            
+          });
+      }
+    } else {
+      console.log("Please enter the quote");
     }
-    // Non-dapp browsers...
-    else {
-      console.log(
-        "Non-Ethereum browser detected. You should consider trying MetaMask!"
+  };
+
+  const getSignatureParameters = signature => {
+    if (!web3.utils.isHexStrict(signature)) {
+      throw new Error(
+        'Given value "'.concat(signature, '" is not a valid hex string.')
       );
     }
-  }
+    var r = signature.slice(0, 66);
+    var s = "0x".concat(signature.slice(66, 130));
+    var v = "0x".concat(signature.slice(130, 132));
+    v = web3.utils.hexToNumber(v);
+    if (![27, 28].includes(v)) v += 27;
+    return {
+      r: r,
+      s: s,
+      v: v
+    };
+  };
 
-  async loadBlockchainData()
-  {
-    const web3=window.web3;
-    const accounts=await web3.eth.getAccounts();
-    //var paccount = accounts[0];
-    //var oldaccount=this.state.account;
-    this.setState({account:accounts[0]});
-    window.ethereum.on('accountsChanged', function (accounts) {
-      // Time to reload your interface with accounts[0]!
-      window.location.reload();
-      this.setState({account:accounts[0]});
-    }.bind(this));
+  
 
-    console.log(web3);
-    console.log(accounts);
-   // 
-   const networkId=await web3.eth.net.getId();
-   //console.log(networkId);
-    const networkdata=VidShield.networks[networkId];
-    //console.log(networkdata);
-    if(networkdata)
-    {
-      const vidshield=new web3.eth.Contract(VidShield.abi,networkdata.address);
-      await this.setState({vidshield});
-      
-      
+  const sendTransaction = async (userAddress, functionData, r, s, v) => {
+    if (web3 && contract) {
+      try {
+        let gasLimit = await contract.methods
+          .executeMetaTransaction(userAddress, functionData, r, s, v)
+          .estimateGas({ from: userAddress });
+        let gasPrice = await web3.eth.getGasPrice();
+        console.log(gasLimit);
+        console.log(gasPrice);
+        let tx = contract.methods
+          .executeMetaTransaction(userAddress, functionData, r, s, v)
+          .send({
+            from: userAddress,
+            gasPrice: web3.utils.toHex(gasPrice),
+            gasLimit: web3.utils.toHex(gasLimit)
+          });
+
+        tx.on("transactionHash", function(hash) {
+          console.log(`Transaction hash is ${hash}`);
+          console.log(`Transaction sent by relayer with hash ${hash}`);
+        }).once("confirmation", function(confirmationNumber, receipt) {
+          console.log(receipt);
+          console.log("Transaction confirmed on chain");
+          alert("You have successfully registered as viewer");
+          document.location.reload();
+        });
+      } catch (error) {
+        console.log(error);
+      }
     }
-    
-    
-  }
+  };
 
-  
-
-  registerViewer=async(event)=>
-  {
-    event.preventDefault();
-    try
-    {
-    let depositamount=window.web3.utils.toWei('0.0001', 'Ether');
-    await this.state.vidshield.methods.registerViewer(this.state.account).send({
-      from: this.state.account , value: depositamount
-    }).then((result)=>{
-      
-        alert(`You have successfully registered as viewer with deposit amount 0.0001 ether`);
-        document.location.reload();
-      
-    });
-    }
-    catch(err)
-    {
-      alert("Some unexpected error took place. Have patience and restart application");
-    }
-  }
-
-  
-
-
-  
-  
-  render() {
-    return (
-      <header id="header">
+  return (
+    <div className="Header">
+    <header id="header">
         <div className="intro212">
           <div className="overlay2">
             <div className="container">
               <div className="row">
                 <div className="col-md-8 col-md-offset-2 intro-text">
                   <h1>
-                    {this.props.title ? this.props.title : "Loading"}
+                    {props.title ? props.title : "Loading"}
                     <span></span>
                   </h1>
                   
                   
-                    {this.props.isregistered ? 
+                    {props.isregistered ? 
                    
                   <div>
                   <Link to={{
                             pathname: '/allvideo',
-                            state: {
-                              id:0
-                    
-                            }
+                            
                           }} >
                   <input type="button" value="All Videos"
                     
@@ -145,10 +236,7 @@ export class Header extends Component {
 
                   <Link to={{
                             pathname: '/yournft',
-                            state: {
-                              id:0,
-                              account1:this.state.account
-                            }
+                            
                           }} >
                   <input type="button" value="Your NFTs"
                     
@@ -165,7 +253,7 @@ export class Header extends Component {
                   :
                   
                   <button
-                    onClick={this.registerViewer}
+                    onClick={(event)=>registerViewer(event)}
                     className="btn btn-custom btn-lg page-scroll"
                   >
                     Register
@@ -181,9 +269,7 @@ export class Header extends Component {
          
         </div>
       </header>
-    );
-  
+      </div>
+  );
 }
-}
-
 export default Header;

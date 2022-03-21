@@ -100,8 +100,11 @@ class Video extends Component {
       const {id}=this.props.location.state;
       const {link}=this.props.location.state;
       
+      var bytes  = CryptoJS.AES.decrypt(link, 'secret');
+      var originallink = bytes.toString(CryptoJS.enc.Utf8);
+
       
-      this.setState({livepeerlink: link});
+      this.setState({livepeerlink: originallink});
         
       } catch (error) {
         console.log(error);

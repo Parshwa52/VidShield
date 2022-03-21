@@ -289,6 +289,8 @@ export default class Creatorplatform extends Component {
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
 
+    var cipherlink = CryptoJS.AES.encrypt(this.state.livepeeripfsvideourl.toString(), 'secret').toString();
+    this.setState({livepeeripfsvideourl:cipherlink});
     today = dd + '/' + mm + '/' + yyyy;
     console.log("title=",this.state.title);
     console.log("LivepeerIPFSURL=",this.state.livepeeripfsvideourl);
@@ -370,7 +372,7 @@ uploadImage=(event)=>{
     else
     {
       console.log("ipfs hash",result);
-
+      alert("Your thumbnail is successfully uploaded");
       this.setState({thumbnaillink:result[0].hash,thumbnaildone:true});
     }
   })
@@ -579,42 +581,20 @@ uploadImage=(event)=>{
 
         </Form.Field>
 
+
+        <Button color="green" size='large' disabled={this.state.livepeerdone} onClick={this.GetLivepeerIPFSURL}>Submit to Livepeer</Button>
+
         <Button color="yellow" size='large' onClick={this.mintNFT}>Mint NFT</Button>
 
         <br/>
         <br/>
         
-        <Button color="green" size='large' disabled={this.state.livepeerdone} onClick={this.GetLivepeerIPFSURL}>Submit</Button>
+        
         
 
 
 
-        {/*<br/>
-        <form name="siaupload">
-       
-       <br/>
-       <input type="button" name='Upload' value='Upload' className="btn btn-primary" onClick={this.uploadVideo}></input>
-       </form>
-            
         
-        <br/>
-  
-        
-        
-        
-         <
-        br / >
-        <
-        Button loading = {
-          this.state.loading
-        }
-        disabled = {
-          this.state.id==''
-        }
-        primary onClick = {
-          this.handleconf
-        }
-      > Submit < /Button>*/}
         
         
         </Form> 

@@ -101,7 +101,6 @@ contract VidShield is EIP712MetaTransaction("VidShield","1")
     {
         require(viewerpresence[viewer]==false);
         viewerpresence[viewer] = true;
-        payable(admin).transfer(msg.value);
     }
 
     function subscribeCreator(address payable viewer,address payable creator,string memory subscriptionenddate)public payable
