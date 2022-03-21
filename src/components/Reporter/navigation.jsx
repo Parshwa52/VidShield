@@ -19,7 +19,7 @@ export class Navigation extends Component {
               <span className="icon-bar"></span>{" "}
             </button>
             <a className="navbar-brand page-scroll" href="#page-top">
-              VidShield
+              {this.props.account}
             </a>{" "}
           </div>
 
@@ -27,37 +27,7 @@ export class Navigation extends Component {
             className="collapse navbar-collapse"
             id="bs-example-navbar-collapse-1"
           >
-            <ul className="nav navbar-nav navbar-right">
             
-              <li>
-                <a href="#features" className="page-scroll">
-                  Features
-                </a>
-              </li>
-
-              <li>
-                <a href="#about" className="page-scroll">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#services" className="page-scroll">
-                  Report Video
-                </a>
-              </li>
-              <li>
-                <a href="#testimonials" className="page-scroll">
-                  Check Reports
-                </a>
-              </li>
-             
-              
-              <li>
-                <a href="#contact" className="page-scroll">
-                  Contact
-                </a>
-              </li>
-            </ul>
           </div>
         </div>
       </nav>

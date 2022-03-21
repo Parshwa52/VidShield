@@ -4,9 +4,9 @@ export class testimonials extends Component {
   render() {
     return (
       <div id="testimonials">
-        <h1></h1>
+        <h1>Do you want to check reports?</h1>
         <button
-                    onClick={() => window.open('/')}
+                    onClick={() => window.open('/checkreport')}
                     className="btn btn-success btn-lg page-scroll"
                   >
                     Click here to check

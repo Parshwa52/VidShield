@@ -1,7 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 pragma experimental ABIEncoderV2;
-contract VidShield
+
+import "./EIP712MetaTransaction.sol";
+
+contract VidShield is EIP712MetaTransaction("VidShield","1")
 {
     struct Video
     {
@@ -157,16 +160,21 @@ contract VidShield
         reporterrequests[requestcounter]=r;
     }
    
-    function getreporterrequest(uint key)public view returns(Request memory)
+    function cancelRequest(uint requestid)public
     {
-        return reporterrequests[key];
+        Request memory req=reporterrequests[requestid];
+        req.fulfill=true;
+        reporterrequests[requestid] = req;
     }
 
-    function blockUser(address pirate)public
+    function blockUser(address pirate,uint requestid)public
     {
         User memory data = userdata[pirate];
         data.block=true;
         userdata[pirate]=data;
+        Request memory req=reporterrequests[requestid];
+        req.fulfill=true;
+        reporterrequests[requestid] = req;
         emit PirateReported(pirate);
     }
 }

@@ -10,7 +10,8 @@ import Video from './components/Video';
 
 import CreatorDashBoard from './components/CreatorDashBoard/CreatorDashBoard';
 import Home from './Home';
-//import R from './components/R/R';
+import Reporter from './components/Reporter/addreport';
+import ReportCheck from './components/Reporter/Reporter';
 import Creatorplatform from './components/CreatorP/Creatorplatform';
 import ViewerPlatform  from './components/ViewerPlatform/ViewerPlatform';
 import allvideo from './components/Allvideo/allvideo';
@@ -114,7 +115,8 @@ class App extends Component {
         <Route path="/Video" component={Video}></Route>
         
         <Route path="/CreatorDashBoard" component={CreatorDashBoard}></Route>
-        {/* <Route path="/R" component={R}></Route> */}
+        <Route path="/Reporter" component={Reporter}></Route>
+        <Route path="/checkreport" component={ReportCheck}></Route>
         <Route path="/Creatorplatform" component={Creatorplatform}></Route>
         <Route path="/ViewerPlatform" component={ViewerPlatform}></Route>
         <Route path="/allvideo" component={allvideo}></Route>

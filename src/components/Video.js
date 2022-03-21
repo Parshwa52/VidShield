@@ -21,7 +21,7 @@ class Video extends Component {
     await this.loadWeb3();
     await this.loadBlockchainData();
     document.documentElement.webkitRequestFullscreen();
-    this.interval = setInterval(this.handlefullscreen, 5000);
+    this.interval = setInterval(this.handlefullscreen, 1000);
   }
   
   componentWillUnmount() {
@@ -100,7 +100,7 @@ class Video extends Component {
       const {id}=this.props.location.state;
       const {link}=this.props.location.state;
       
-      console.log("lvlink=",link);
+      
       this.setState({livepeerlink: link});
         
       } catch (error) {

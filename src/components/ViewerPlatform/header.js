@@ -140,7 +140,27 @@ export class Header extends Component {
                     
                   
                           </Link>
+
+                          {"  "}
+
+                  <Link to={{
+                            pathname: '/yournft',
+                            state: {
+                              id:0,
+                              account1:this.state.account
+                            }
+                          }} >
+                  <input type="button" value="Your NFTs"
+                    
+                    className="btn btn-custom btn-lg page-scroll"
+                  />
+                    
+                {" "}
+                  </Link>
+
                   </div>
+                  
+
                   
                   :
                   
