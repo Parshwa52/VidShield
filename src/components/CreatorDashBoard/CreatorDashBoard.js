@@ -18,7 +18,7 @@ class CreatorDashBoard extends Component {
     super(props)
     this.state = {
       account: '',
-      yourvideos:[{"title":"aABCD","thumbnail":"https://ipfs.io/ipfs/","id":1,"livepeerlink":"https://ipfs.livepeer.com/ipfs/"}],
+      yourvideos:[{"title":"aABCD","thumbnail":"","id":1,"livepeerlink":""}],
       isregistered:false
       
     }

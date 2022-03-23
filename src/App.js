@@ -16,7 +16,7 @@ import Creatorplatform from './components/CreatorP/Creatorplatform';
 import ViewerPlatform  from './components/ViewerPlatform/ViewerPlatform';
 import allvideo from './components/Allvideo/allvideo';
 import yournft from './components/yournft/yournft';
-
+import allnft from './components/allnft/allnft';
 import Contact from './components/contact';
 import JsonData from './data/data.json';
 //import Identicon from 'identicon.js';
@@ -121,6 +121,7 @@ class App extends Component {
         <Route path="/ViewerPlatform" component={ViewerPlatform}></Route>
         <Route path="/allvideo" component={allvideo}></Route>
         <Route path="/yournft" component={yournft}></Route>
+        <Route path="/allnft" component={allnft}></Route>
         </Switch>
         </div>
         </Router>

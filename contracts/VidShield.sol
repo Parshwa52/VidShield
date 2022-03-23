@@ -166,13 +166,15 @@ contract VidShield is EIP712MetaTransaction("VidShield","1")
         reporterrequests[requestid] = req;
     }
 
-    function blockUser(address pirate,uint requestid)public
+    function blockUser(address pirate,uint requestid)public payable
     {
         User memory data = userdata[pirate];
         data.block=true;
         userdata[pirate]=data;
         Request memory req=reporterrequests[requestid];
         req.fulfill=true;
+        address reporter = req.reporter;
+        payable(reporter).transfer(msg.value);
         reporterrequests[requestid] = req;
         emit PirateReported(pirate);
     }

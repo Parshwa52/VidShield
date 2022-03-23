@@ -29,7 +29,7 @@ let domainData = {
   name: "VidShield",
   version: "1",
   verifyingContract: config.contract.address,
-  salt: '0x' + (4).toString(16).padStart(64, '0')
+  salt: '0x' + (80001).toString(16).padStart(64, '0')
 };
 
 let web3,walletweb3;
@@ -47,8 +47,8 @@ function Header(props) {
         // Ethereum user detected. You can now use the provider.
         const provider = window["ethereum"];
         await provider.enable();
-        if (provider.networkVersion === "4") {
-          domainData.chainId = 4;
+        if (provider.networkVersion === "80001") {
+          domainData.chainId = 80001;
         const apikey = `${bickey.BICONOMY_DAPP_KEY}`;
         const biconomy = new Biconomy(provider,{apiKey: apikey, debug: true});
         web3 = new Web3(biconomy);
@@ -71,7 +71,7 @@ function Header(props) {
         });
           
         } else {
-          console.log("Please change the network in metamask to Ropsten");
+          console.log("Please change the network in metamask to Polygon Mumbai");
         }
       } else {
         console.log("Metamask not installed");
@@ -239,6 +239,18 @@ function Header(props) {
                             
                           }} >
                   <input type="button" value="Your NFTs"
+                    
+                    className="btn btn-custom btn-lg page-scroll"
+                  />
+                    
+                {" "}
+                  </Link>
+
+                  <Link to={{
+                            pathname: '/allnft',
+                            
+                          }} >
+                  <input type="button" value="All NFTs"
                     
                     className="btn btn-custom btn-lg page-scroll"
                   />

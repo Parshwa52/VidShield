@@ -62,6 +62,13 @@ module.exports = {
       },
       network_id: 3,
       gas: 4000000 //4M is the max
+    },
+    matic: {
+      provider: () => new HDWalletProvider(MNEMONIC, API_URL),
+      network_id: 80001,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
     }
 
 

@@ -95,7 +95,7 @@ class yournft extends Component {
       //alert(balance);
       var context =  this;
       const apiKey = keys.ALCHEMY_NFT_API_KEY;
-      const baseURL = `https://eth-rinkeby.alchemyapi.io/v2/${apiKey}/getNFTs/`;
+      const baseURL = `https://polygon-mumbai.g.alchemy.com/${apiKey}/v1/getNFTs/`;
       // replace with the wallet address you want to query for NFTs
       //const ownerAddr = this.state.account;
       const ownerAddr =this.state.account;
