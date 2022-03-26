@@ -85,7 +85,6 @@ function Header(props) {
     if (contract) {
       if (metaTxEnabled) {
         console.log("Sending meta transaction");
-        alert("clicked");
         let userAddress = selectedAddress;
         let nonce = await contract.methods.getNonce(userAddress).call();
         

@@ -122,7 +122,7 @@ class allnft extends Component {
           var thumbnailimg = response.data.metadata.image;
           thumbnailimg = thumbnailimg.replace("ipfs://","");
           var thumbnaillink = `https://ipfs.io/ipfs/${thumbnailimg}`;
-          var clickablelink = `https://testnets.opensea.io/assets/${nftcontract}/${tokenInteger}`;
+          var clickablelink = `https://testnets.opensea.io/assets/mumbai/${nftcontract}/${tokenInteger}`;
           console.log(nftcontract);
           console.log(tokenID);
           console.log(tokenInteger);
@@ -159,7 +159,7 @@ class allnft extends Component {
         
         
         <Navigation account ={this.state.account}/>
-        <Header title="Your NFTs"/>
+        <Header title="All NFTs"/>
         <Features data={this.state.nftarray} />
         
         

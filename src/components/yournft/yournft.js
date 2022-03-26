@@ -119,7 +119,7 @@ class yournft extends Component {
           var thumbnailimg = response.data.ownedNfts[i].metadata.image;
           thumbnailimg = thumbnailimg.replace("ipfs://","");
           var thumbnaillink = `https://ipfs.io/ipfs/${thumbnailimg}`;
-          var clickablelink = `https://testnets.opensea.io/assets/${nftcontract}/${tokenInteger}`;
+          var clickablelink = `https://testnets.opensea.io/assets/mumbai/${nftcontract}/${tokenInteger}`;
           console.log(nftcontract);
           console.log(tokenID);
           console.log(tokenInteger);

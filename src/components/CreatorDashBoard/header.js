@@ -79,16 +79,13 @@ function Header(props) {
     init();
   }, []);
 
-  const alertrr = ()=>{
-    alert("Clicked");
-  }
+  
 
   const registerCreate = async (event) => {
     event.preventDefault();
     if (contract) {
       if (metaTxEnabled) {
         console.log("Sending meta transaction");
-        alert("clicked");
         let userAddress = selectedAddress;
         let nonce = await contract.methods.getNonce(userAddress).call();
         
