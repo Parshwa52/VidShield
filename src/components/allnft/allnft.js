@@ -20,10 +20,13 @@ class allnft extends Component {
     this.state = {
       account: '',
       nftarray:[],
-      isregistered:false
-      
+      nftarray2:[],
+      isregistered:false,
+      nftContract:"",
+      alchemyNFTerror:"no",
+      totalNFTsforContract:1
     }
-
+    this.getGatewayMetadata = this.getGatewayMetadata.bind(this);
     
   }
  
@@ -31,7 +34,7 @@ class allnft extends Component {
   {
     await this.loadWeb3();
     await this.loadBlockchainData();
-    
+    await this.getAllNFTforContract();
   }
   async loadWeb3()
   {
@@ -61,6 +64,78 @@ class allnft extends Component {
     }
   }
 
+  async getGatewayMetadata(token_uri){
+    //var context = this;
+     return axios.get(token_uri.toString());
+     //.then(function(response){
+       //context.setState({metadata:response2.data});
+       //alert("response token uri");
+       //this.response = response.data;
+       //return this.response.data;});
+       //await console.log("METADATA=",this.state.metadata);
+       //return response;
+ };
+
+  async getAllNFTforContract()
+  {
+    var totalnfts = this.state.totalNFTsforContract;
+    var vidnftaddress = this.state.nftContract;
+    var i;
+    
+    var nftarray2=[];
+    var context= this;
+    console.log("all nfts=",totalnfts);
+
+    for (i=1;i<=totalnfts;i++)
+    {
+       var tokenid = i.toString();
+    
+var config = {
+  method: 'get',
+  url: `https://deep-index.moralis.io/api/v2/nft/${vidnftaddress}/${tokenid}?chain=mumbai&format=decimal`,
+  headers: { 
+    'Accept': 'application/json', 
+    'x-api-key': keys.MORALIS_NFT_API
+  }
+};
+
+await axios(config)
+.then(async function (response) {
+  console.log(JSON.stringify(response.data));
+  var nftObj = new Object();
+  var metadata = JSON.parse(response.data.metadata);
+  var title;var thumbnailimg;
+  if(metadata==null)
+        {
+          var metadata_call = await context.getGatewayMetadata(response.data.token_uri).then(function(response){
+            metadata = response.data;
+          });
+        }
+        
+        title = metadata.name;
+        console.log("metadata=",metadata);
+
+        thumbnailimg = metadata.image;
+        thumbnailimg = thumbnailimg.replace("ipfs://","");
+        
+        
+        var thumbnaillink = `https://ipfs.io/ipfs/${thumbnailimg}`;
+        var clickablelink = `https://testnets.opensea.io/assets/mumbai/${vidnftaddress}/${tokenid}`;
+        nftObj.tokenInteger = tokenid;
+        nftObj.title = title;
+        nftObj.thumbnaillink = thumbnaillink;
+        nftObj.clickablelink = clickablelink; 
+        nftarray2.push(nftObj);
+  
+})
+
+
+    }
+    context.setState({nftarray2});
+    await console.log("nftarray2=",this.state.nftarray2);
+    //await console.log("alchemy error=",this.state.alchemyNFTerror);
+  }
+
   async loadBlockchainData()
   {
     const web3=window.web3;
@@ -87,8 +162,9 @@ class allnft extends Component {
       const vidshield=new web3.eth.Contract(VidShield.abi,networkdata.address);
 //
       const videonft = new web3.eth.Contract(VideoNFT.abi,nwdata_videonft.address);
-
+      
       const totalNFTsforContract = await videonft.methods._tokenIds().call();
+      this.setState({totalNFTsforContract});
       //const totalNFTsforContract = 1;
       //const {id}=this.props.id.state;
       //console.log("acc=",id);
@@ -103,9 +179,13 @@ class allnft extends Component {
       const contractAddr = nwdata_videonft.address;
       const tokenType = "erc721";
       var tokenId;
-      var nftarray=[]
+      var nftarray=[];
+      this.setState({nftContract:contractAddr});
+      var alchemyNFTerror;
       for(i=1;i<=totalNFTsforContract;i++)
       {
+          if(this.state.alchemyNFTerror=="yes")
+          {break;}
           tokenId = i.toString();
           var config = {
             method: 'get',
@@ -114,6 +194,14 @@ class allnft extends Component {
           };
           await axios(config)
           .then(function(response){
+            if(response.data.error!=="")
+            {
+              
+              alchemyNFTerror="yes";
+              
+            }
+            else
+            {
             var nftObj = new Object();
             var nftcontract = response.data.contract.address;
           var tokenID= response.data.id.tokenId;
@@ -135,13 +223,17 @@ class allnft extends Component {
           nftObj.thumbnaillink = thumbnaillink;
           nftObj.clickablelink = clickablelink; 
           nftarray.push(nftObj);
+            }
           })
           .catch(error => console.log(error));
       }
-      context.setState({nftarray});
+      context.setState({nftarray:nftarray,alchemyNFTerror:alchemyNFTerror});
       await console.log("nftarray=",this.state.nftarray);
-      
-  
+      await console.log("alchemyNFTerror=",this.state.alchemyNFTerror);
+     /* if(this.state.alchemyNFTerror=="yes")
+      {
+        this.getAllNFTforContract();
+      }*/
     
     
 
@@ -160,7 +252,10 @@ class allnft extends Component {
         
         <Navigation account ={this.state.account}/>
         <Header title="All NFTs"/>
-        <Features data={this.state.nftarray} />
+        <Features data=
+        { this.state.alchemyNFTerror=="yes"?
+        this.state.nftarray2: this.state.nftarray
+        } />
         
         
         

@@ -113,7 +113,7 @@ export default class Creatorplatform extends Component {
     {
       const vidshield=new web3.eth.Contract(VidShield.abi,networkdata.address);
       const videonft = new web3.eth.Contract(VideoNFT.abi,networkdata_vidnft.address);
-      console.log(videonft);
+      console.log("videonft=",videonft);
       await this.setState({videonft});
       
       await this.setState({vidshield});
@@ -318,8 +318,8 @@ mintNFT=async(event)=>{
   event.preventDefault();
   try{
   console.log("nftmurl=",this.state.nftMetadataUrl);
-  const nonce = await window.web3.eth.getTransactionCount(this.state.account, 'latest');
-  await this.state.videonft.methods.mintNFT(this.state.account,this.state.nftMetadataUrl).send({'from':this.state.account,'gas': 500000})
+  //const nonce = await window.web3.eth.getTransactionCount(this.state.account, 'latest');
+  await this.state.videonft.methods.mintNFT(this.state.account,this.state.nftMetadataUrl).send({'from':this.state.account})
   .then((result)=>{
         alert("You have successfully minted your video NFT");
     });
@@ -438,7 +438,7 @@ uploadImage=(event)=>{
         <h3><font color="black">Video ID</font></h3><br/>
         <Form.Field>
         <
-        Input label="Video ID"
+        Input label="Video ID" disabled
         fluid ref = {
           (input) => {
             this.id = input;
