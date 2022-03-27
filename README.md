@@ -1,6 +1,6 @@
 #  🔥💰VidShield 🥇😎
 
-## 🥇 A Creator platform with Video NFT and Piracy protection 📃
+## 🥇🤖 A Creator platform with Video NFT and Piracy protection 💰🔥
 
 ![landing page](./public/tn.jpg)
 
