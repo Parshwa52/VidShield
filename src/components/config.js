@@ -1,6 +1,6 @@
 let config = {};
 config.contract = {
-    address: "0x4304bb3Ac364f3337eD3DE60b835a68503E7D590",
+    address: "0x499E4034c517a860387BB498C701064929A2BAbE",
     abi : [
       {
         "inputs": [],
@@ -169,6 +169,41 @@ config.contract = {
             "internalType": "uint256",
             "name": "nonce",
             "type": "uint256"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "reporterrequests",
+        "outputs": [
+          {
+            "internalType": "address",
+            "name": "reporter",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "pirate",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "movielink",
+            "type": "string"
+          },
+          {
+            "internalType": "bool",
+            "name": "fulfill",
+            "type": "bool"
           }
         ],
         "stateMutability": "view",
@@ -517,6 +552,48 @@ config.contract = {
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
+      },
+      {
+        "inputs": [
+          {
+            "internalType": "uint256",
+            "name": "requestid",
+            "type": "uint256"
+          }
+        ],
+        "name": "getReporterrequest",
+        "outputs": [
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "reporter",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "pirate",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "movielink",
+                "type": "string"
+              },
+              {
+                "internalType": "bool",
+                "name": "fulfill",
+                "type": "bool"
+              }
+            ],
+            "internalType": "struct VidShield.Request",
+            "name": "",
+            "type": "tuple"
+          }
+        ],
+        "stateMutability": "view",
+        "type": "function",
+        "constant": true
       },
       {
         "inputs": [

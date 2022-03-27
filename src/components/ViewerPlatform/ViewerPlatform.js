@@ -96,7 +96,7 @@ class ViewerPlatform extends Component {
       const viewerdata = await vidshield.methods.getUserData(this.state.account).call();
       console.log("viewerdata=",viewerdata);
 
-      await this.setState({blockstatus:viewerdata[2]});
+      await this.setState({blockstatus:viewerdata.block});
       
       var vidcounter = await vidshield.methods.vidcounter().call();
       console.log("video count=",vidcounter);

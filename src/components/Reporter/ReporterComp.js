@@ -46,7 +46,7 @@ export default class ReporterComp extends Component {
                 <Button.Group color='blue' widths='5'>
           <Button attached='bottom' onClick={(event)=>{window.open(d.link);}}>View Copy</Button>
 
-          <Button attached='bottom' onClick={(event)=>{this.props.blockpirate(d.address)}}>Block Pirate</Button>
+          <Button attached='bottom' onClick={(event)=>{this.props.blockpirate(d.address,d.requestid)}}>Block Pirate</Button>
 
           <Button color="red" attached='bottom' onClick={(event)=>{this.props.cancelRequest(d.requestid)}}>Cancel Request</Button>
           

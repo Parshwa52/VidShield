@@ -75,7 +75,7 @@ import React, {
       console.log(web3);
       console.log(accounts);
      // admin account
-     if(this.state.account==="0x163613C90525DDf901383cdD32554b969285cea6")
+     if(this.state.account==="0x7c9a978a1148c0Ba8Ee845bCebD07Ec817a50A16")
      {
      const networkId=await web3.eth.net.getId();
       const networkdata=VidShield.networks[networkId];
@@ -91,7 +91,7 @@ import React, {
         var requestarray=[];
         for(var i=1;i<=requestcounter;i++)
         {
-            const request=await this.state.vidshield.methods.getreporterrequest(i).call();
+            const request=await this.state.vidshield.methods.getReporterrequest(i).call();
             console.log(request);
             if(request.fulfill===false)
             {
@@ -120,9 +120,10 @@ import React, {
     
     //handleClose = () => this.setState({ modalOpen: false })
     
-    blockpirate=async(address)=>{
+    blockpirate=async(address,requestid)=>{
       try{
-          await this.state.vidshield.methods.blockUser(address).send({from:this.state.account}).then(
+        let bountyamount=window.web3.utils.toWei('0.0001', 'Ether');
+          await this.state.vidshield.methods.blockUser(address,requestid).send({from:this.state.account, value:bountyamount}).then(
             (result)=>{
               alert("Pirate Blocked");
             })

@@ -41,7 +41,7 @@ contract VidShield is EIP712MetaTransaction("VidShield","1")
         bool fulfill;
     }
     uint public requestcounter=0;
-    mapping(uint=>Request) reporterrequests;
+    mapping(uint=>Request) public reporterrequests;
     
     event VideoRegistered(uint videoId);
     event creatorRegisteredConfirm(address creator);
@@ -164,6 +164,11 @@ contract VidShield is EIP712MetaTransaction("VidShield","1")
         Request memory req=reporterrequests[requestid];
         req.fulfill=true;
         reporterrequests[requestid] = req;
+    }
+
+    function getReporterrequest(uint requestid) public view returns(Request memory)
+    {
+        return reporterrequests[requestid];
     }
 
     function blockUser(address pirate,uint requestid)public payable
