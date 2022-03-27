@@ -66,7 +66,7 @@ class allnft extends Component {
 
   async getGatewayMetadata(token_uri){
     //var context = this;
-     return axios.get(token_uri.toString());
+     return axios.get(token_uri);
      //.then(function(response){
        //context.setState({metadata:response2.data});
        //alert("response token uri");
