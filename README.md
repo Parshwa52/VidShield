@@ -44,6 +44,12 @@ f) All the video thumbnails and the reporter’s pirated video is stored on File
 I was successful in integrating different tech stacks in my application by deeply reading their documentation, trying their hello world projects and joining their discord community(here, most of my errors got solved). I would like to thank :[Livepeer](https://livepeer.org/)
 , [Polygon](https://polygon.technology/), [Alchemy](https://dashboard.alchemyapi.io/), [Biconomy](https://www.biconomy.io/), [Filecoin](https://filecoin.io/) for the easy documentation and active community support they provide.
 
+## Use Case Diagram
+
+![Use Case](./public/flowdiag.drawio.png)
+
+Source: Made by me
+
 ## NFT Collection on Opensea
 
 [VideoNFT Collection](https://testnets.opensea.io/collection/videonft-pu1vck8z1a)
@@ -60,3 +66,5 @@ VideoNFT - [0xf376e6ac854ac55aef1017c8c557ee32ccc726f0](https://mumbai.polygonsc
 ### Video Demo
 
 [![VidShield](./public/tn.jpg)](https://youtu.be/kleke9msZQM)
+
+All Images Source Except Use Case Diagram : Google Images
