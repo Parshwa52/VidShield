@@ -43,7 +43,7 @@ class allnft extends Component {
       try {
         // Request account access if needed
         await window.ethereum.enable();
-        console.log(window.web3);
+        //console.log(window.web3);
         //console.log(web3.eth.getAccounts());
         // Acccounts now exposed
       } catch (error) {
@@ -53,7 +53,7 @@ class allnft extends Component {
     // Legacy dapp browsers...
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
-      console.log(window.web3);
+      //console.log(window.web3);
       // Acccounts always exposed
     }
     // Non-dapp browsers...
@@ -84,7 +84,7 @@ class allnft extends Component {
     
     var nftarray2=[];
     var context= this;
-    console.log("all nfts=",totalnfts);
+    //console.log("all nfts=",totalnfts);
 
     for (i=1;i<=totalnfts;i++)
     {
@@ -101,7 +101,7 @@ var config = {
 
 await axios(config)
 .then(async function (response) {
-  console.log(JSON.stringify(response.data));
+  //console.log(JSON.stringify(response.data));
   var nftObj = new Object();
   var metadata = JSON.parse(response.data.metadata);
   var title;var thumbnailimg;
@@ -113,7 +113,7 @@ await axios(config)
         }
         
         title = metadata.name;
-        console.log("metadata=",metadata);
+        //console.log("metadata=",metadata);
 
         thumbnailimg = metadata.image;
         thumbnailimg = thumbnailimg.replace("ipfs://","");
@@ -132,7 +132,7 @@ await axios(config)
 
     }
     context.setState({nftarray2});
-    await console.log("nftarray2=",this.state.nftarray2);
+    //await console.log("nftarray2=",this.state.nftarray2);
     //await console.log("alchemy error=",this.state.alchemyNFTerror);
   }
 
@@ -149,8 +149,8 @@ await axios(config)
       this.setState({account:accounts[0]});
     }.bind(this));
 
-    console.log(web3);
-    console.log(accounts);
+    //console.log(web3);
+    //console.log(accounts);
    // 
    const networkId=await web3.eth.net.getId();
    //console.log(networkId);
@@ -211,13 +211,13 @@ await axios(config)
           thumbnailimg = thumbnailimg.replace("ipfs://","");
           var thumbnaillink = `https://ipfs.io/ipfs/${thumbnailimg}`;
           var clickablelink = `https://testnets.opensea.io/assets/mumbai/${nftcontract}/${tokenInteger}`;
-          console.log(nftcontract);
-          console.log(tokenID);
-          console.log(tokenInteger);
-          console.log(title);
-          console.log(thumbnailimg);
-          console.log(thumbnaillink);
-          console.log(clickablelink);
+          // console.log(nftcontract);
+          // console.log(tokenID);
+          // console.log(tokenInteger);
+          // console.log(title);
+          // console.log(thumbnailimg);
+          // console.log(thumbnaillink);
+          // console.log(clickablelink);
           nftObj.tokenInteger = tokenInteger;
           nftObj.title = title;
           nftObj.thumbnaillink = thumbnaillink;
@@ -228,7 +228,7 @@ await axios(config)
           .catch(error => console.log(error));
       }
       context.setState({nftarray:nftarray,alchemyNFTerror:alchemyNFTerror});
-      await console.log("nftarray=",this.state.nftarray);
+      //await console.log("nftarray=",this.state.nftarray);
       await console.log("alchemyNFTerror=",this.state.alchemyNFTerror);
      /* if(this.state.alchemyNFTerror=="yes")
       {

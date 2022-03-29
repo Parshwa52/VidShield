@@ -103,8 +103,8 @@ function Header(props) {
           primaryType: "MetaTransaction",
           message: message
         });
-        console.log(domainData);
-        console.log(userAddress);
+        //console.log(domainData);
+        //console.log(userAddress);
         web3.eth.currentProvider.send(
           {
             jsonrpc: "2.0",
@@ -118,10 +118,10 @@ function Header(props) {
               console.log("Could not get user signature");
             } else if (response && response.result) {
               let { r, s, v } = getSignatureParameters(response.result);
-              console.log(userAddress);
-              console.log(JSON.stringify(message));
-              console.log(message);
-              console.log(getSignatureParameters(response.result));
+              // console.log(userAddress);
+              // console.log(JSON.stringify(message));
+              // console.log(message);
+              // console.log(getSignatureParameters(response.result));
 
               const recovered = sigUtil.recoverTypedSignature_v4({
                 data: JSON.parse(dataToSign),
@@ -146,7 +146,7 @@ function Header(props) {
           });
       }
     } else {
-      console.log("Please enter the quote");
+      //console.log("");
     }
   };
 
@@ -177,8 +177,8 @@ function Header(props) {
           .executeMetaTransaction(userAddress, functionData, r, s, v)
           .estimateGas({ from: userAddress });
         let gasPrice = await web3.eth.getGasPrice();
-        console.log(gasLimit);
-        console.log(gasPrice);
+        // console.log(gasLimit);
+        // console.log(gasPrice);
         let tx = contract.methods
           .executeMetaTransaction(userAddress, functionData, r, s, v)
           .send({

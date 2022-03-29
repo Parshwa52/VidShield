@@ -39,7 +39,7 @@ class ViewerPlatform extends Component {
       try {
         // Request account access if needed
         await window.ethereum.enable();
-        console.log(window.web3);
+        //console.log(window.web3);
         //console.log(web3.eth.getAccounts());
         // Acccounts now exposed
       } catch (error) {
@@ -49,7 +49,7 @@ class ViewerPlatform extends Component {
     // Legacy dapp browsers...
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
-      console.log(window.web3);
+      //console.log(window.web3);
       // Acccounts always exposed
     }
     // Non-dapp browsers...
@@ -73,8 +73,8 @@ class ViewerPlatform extends Component {
       this.setState({account:accounts[0]});
     }.bind(this));
 
-    console.log(web3);
-    console.log(accounts);
+    //console.log(web3);
+    //console.log(accounts);
    // 
    const networkId=await web3.eth.net.getId();
    //console.log(networkId);
@@ -87,19 +87,19 @@ class ViewerPlatform extends Component {
       
 
       var isregistered = await vidshield.methods.checkIfAlreadyViewer(this.state.account).call();
-      console.log("registred viewer=",isregistered);
+      //console.log("registred viewer=",isregistered);
       await this.setState({isregistered});
 
       const yourcreatorssubscribed = await vidshield.methods.getCreatorsforViewer(this.state.account).call();
-      console.log("ycs=",yourcreatorssubscribed);
+      //console.log("ycs=",yourcreatorssubscribed);
 
       const viewerdata = await vidshield.methods.getUserData(this.state.account).call();
-      console.log("viewerdata=",viewerdata);
+      //console.log("viewerdata=",viewerdata);
 
       await this.setState({blockstatus:viewerdata.block});
       
       var vidcounter = await vidshield.methods.vidcounter().call();
-      console.log("video count=",vidcounter);
+      //console.log("video count=",vidcounter);
       var i;
 
       var creatorlength = yourcreatorssubscribed.length;
@@ -109,11 +109,11 @@ class ViewerPlatform extends Component {
       for(j=0;j<creatorlength;j++)
       {
         var currcreator = yourcreatorssubscribed[j];
-        console.log("jcreator=",currcreator);
+        //console.log("jcreator=",currcreator);
         var obj=new Object();
         obj.creator=currcreator;
         var check = await vidshield.methods.creatorssubscribed(this.state.account,currcreator).call();
-        console.log("check=",check);
+        //console.log("check=",check);
         //date
         const toda = new Date();
       const yyyy = toda.getFullYear();
@@ -126,13 +126,13 @@ class ViewerPlatform extends Component {
       const todaydate = mm + '/' + dd + '/' + yyyy.toString().substr(2,4);
 
       const current = new Date(todaydate);
-      console.log("todaydate=",current);
+      //console.log("todaydate=",current);
       const subscribeenddate = new Date(check);
-      console.log("subdate=",subscribeenddate);
+      //console.log("subdate=",subscribeenddate);
       const diffTime = Math.abs(subscribeenddate - current);
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
         //date end
-        console.log("diffdays=",diffDays);
+        //console.log("diffdays=",diffDays);
         if(check!=="" && diffDays<=365)
         {
         var videoarray=[];

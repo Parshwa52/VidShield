@@ -9,7 +9,7 @@ export class features extends Component {
       
       try{
       console.log("viewer",this.props.vieweraccount);
-      console.log("Vidshield",this.props.vidshield);
+      //console.log("Vidshield",this.props.vidshield);
       const viewer = this.props.vieweraccount;
       const vidshield = this.props.vidshield;
 
@@ -31,7 +31,7 @@ export class features extends Component {
 
       if(check==="" || diffDays>365)
       {
-      await console.log("last date=",check);
+      //await console.log("last date=",check);
       //date
       let subscriptionamount=window.web3.utils.toWei('0.001', 'Ether');
       var year  = new Date().getFullYear();
@@ -46,8 +46,8 @@ export class features extends Component {
       if (mm2 < 10) mm2 = '0' + mm2;
 
       const todaydate2 = mm2 + '/' + dd2 + '/' + yyyy2.toString().substr(2,4);
-      console.log("date=",todaydate2);
-      console.log("creator=",creator);
+      //console.log("date=",todaydate2);
+      //console.log("creator=",creator);
       await vidshield.methods.subscribeCreator(viewer,creator,todaydate2).send({from: viewer,value: subscriptionamount})
       .then((result)=>{
         

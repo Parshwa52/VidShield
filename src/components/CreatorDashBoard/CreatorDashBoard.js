@@ -39,7 +39,7 @@ class CreatorDashBoard extends Component {
       try {
         // Request account access if needed
         await window.ethereum.enable();
-        console.log(window.web3);
+        //console.log(window.web3);
         //console.log(web3.eth.getAccounts());
         // Acccounts now exposed
       } catch (error) {
@@ -49,7 +49,7 @@ class CreatorDashBoard extends Component {
     // Legacy dapp browsers...
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
-      console.log(window.web3);
+      //console.log(window.web3);
       // Acccounts always exposed
     }
     // Non-dapp browsers...
@@ -73,8 +73,8 @@ class CreatorDashBoard extends Component {
       this.setState({account:accounts[0]});
     }.bind(this));
 
-    console.log(web3);
-    console.log(accounts);
+    //console.log(web3);
+    //console.log(accounts);
    // 
    const networkId=await web3.eth.net.getId();
    //console.log(networkId);
@@ -85,7 +85,7 @@ class CreatorDashBoard extends Component {
       const vidshield=new web3.eth.Contract(VidShield.abi,networkdata.address);
 
       const isregistered = await vidshield.methods.checkIfAlreadyCreator(this.state.account).call();
-      console.log("isreg=",isregistered);
+      //console.log("isreg=",isregistered);
       await this.setState({isregistered});
 
       var vidcounter = await vidshield.methods.vidcounter().call();
@@ -106,7 +106,7 @@ class CreatorDashBoard extends Component {
         }
         
       }
-      console.log(videoarray);
+      //console.log(videoarray);
       this.setState({yourvideos:videoarray});
       
     }

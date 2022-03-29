@@ -37,7 +37,7 @@ import React, {
         try {
           // Request account access if needed
           await window.ethereum.enable();
-          console.log(window.web3);
+          //console.log(window.web3);
           //console.log(web3.eth.getAccounts());
           // Acccounts now exposed
         } catch (error) {
@@ -47,7 +47,7 @@ import React, {
       // Legacy dapp browsers...
       else if (window.web3) {
         window.web3 = new Web3(window.web3.currentProvider);
-        console.log(window.web3);
+        //console.log(window.web3);
         // Acccounts always exposed
       }
       // Non-dapp browsers...
@@ -72,8 +72,8 @@ import React, {
         this.setState({account:accounts[0]});
       }.bind(this));
   
-      console.log(web3);
-      console.log(accounts);
+      //console.log(web3);
+      //console.log(accounts);
      // admin account
      if(this.state.account==="0x7c9a978a1148c0Ba8Ee845bCebD07Ec817a50A16")
      {
@@ -92,7 +92,7 @@ import React, {
         for(var i=1;i<=requestcounter;i++)
         {
             const request=await this.state.vidshield.methods.getReporterrequest(i).call();
-            console.log(request);
+            //console.log(request);
             if(request.fulfill===false)
             {
                 var movieobj=new Object();

@@ -67,7 +67,7 @@ export default class Creatorplatform extends Component {
       try {
         // Request account access if needed
         await window.ethereum.enable();
-        console.log(window.web3);
+        //console.log(window.web3);
         //console.log(web3.eth.getAccounts());
         // Acccounts now exposed
       } catch (error) {
@@ -77,7 +77,7 @@ export default class Creatorplatform extends Component {
     // Legacy dapp browsers...
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
-      console.log(window.web3);
+      //console.log(window.web3);
       // Acccounts always exposed
     }
     // Non-dapp browsers...
@@ -102,8 +102,8 @@ export default class Creatorplatform extends Component {
       this.setState({account:accounts[0]});
     }.bind(this));
 
-    console.log(web3);
-    console.log(accounts);
+    //console.log(web3);
+    //console.log(accounts);
    // 
    const networkId=await web3.eth.net.getId();
     const networkdata=VidShield.networks[networkId];
@@ -113,12 +113,12 @@ export default class Creatorplatform extends Component {
     {
       const vidshield=new web3.eth.Contract(VidShield.abi,networkdata.address);
       const videonft = new web3.eth.Contract(VideoNFT.abi,networkdata_vidnft.address);
-      console.log("videonft=",videonft);
+      //console.log("videonft=",videonft);
       await this.setState({videonft});
       
       await this.setState({vidshield});
       var vidcounter = await vidshield.methods.vidcounter().call();
-      console.log("vidcounter=",vidcounter);
+      //console.log("vidcounter=",vidcounter);
       this.setState({id:vidcounter});
     }
     
@@ -152,7 +152,7 @@ export default class Creatorplatform extends Component {
   upload=async(event)=>
   {
       event.preventDefault();
-      console.log(this.state.binaryfile);
+      //console.log(this.state.binaryfile);
       var context=this;
       try{
         var data = JSON.stringify({
@@ -171,7 +171,7 @@ export default class Creatorplatform extends Component {
           
           await axios(config)
           .then(function (response) {
-            console.log(JSON.stringify(response.data));
+            //console.log(JSON.stringify(response.data));
             //uploadUrl = JSON.stringify(response.data).url;
             context.setState({uploadurls:response.data.url,assetID:response.data.asset.id});
             
@@ -182,8 +182,8 @@ export default class Creatorplatform extends Component {
     }catch(error) {
         return [];
     }
-    await console.log("UploadURL=",this.state.uploadurls);
-    await console.log("AssetID=",this.state.assetID);
+    //await console.log("UploadURL=",this.state.uploadurls);
+    //await console.log("AssetID=",this.state.assetID);
 
     //Put asset to given Livepeer URL
     var data2 = this.state.binaryfile;
@@ -199,8 +199,8 @@ export default class Creatorplatform extends Component {
 
     await axios(config2)
     .then(function (response) {
-        console.log("SUCCESS");
-    console.log(JSON.stringify(response.data));
+        //console.log("SUCCESS");
+    //console.log(JSON.stringify(response.data));
     alert("Video Processing done and uploaded");
     })
     .catch(function (error) {
@@ -237,8 +237,8 @@ export default class Creatorplatform extends Component {
       
       await axios(config3)
       .then(function (response) {
-          console.log("EXPORT SUCCESS");
-        console.log("Export response",JSON.stringify(response.data));
+          //console.log("EXPORT SUCCESS");
+        //console.log("Export response",JSON.stringify(response.data));
         context.setState({taskID:response.data.task.id});
         alert("Video exported to IPFS storage");
       })
@@ -246,7 +246,7 @@ export default class Creatorplatform extends Component {
         console.log(error);
       });
 
-      await console.log("TaskID",this.state.taskID);
+      //await console.log("TaskID",this.state.taskID);
       await this.setState({exportipfsdone:true});
 
       
@@ -269,7 +269,7 @@ export default class Creatorplatform extends Component {
     
     await axios(config4)
     .then(function (response) {
-      console.log(JSON.stringify(response.data));
+      //console.log(JSON.stringify(response.data));
       context.setState({livepeeripfsvideourl:response.data.output.export.ipfs.videoFileGatewayUrl,
       nftMetadataUrl:response.data.output.export.ipfs.nftMetadataUrl });
       alert("Video successfully onboarded to Livepeer platform");
@@ -277,8 +277,8 @@ export default class Creatorplatform extends Component {
     .catch(function (error) {
       console.log(error);
     });
-    await console.log("livepeeripfsvideourl",this.state.livepeeripfsvideourl);
-    await console.log("nftmetadaturl=",this.state.nftMetadataUrl);
+    //await console.log("livepeeripfsvideourl",this.state.livepeeripfsvideourl);
+    //await console.log("nftmetadaturl=",this.state.nftMetadataUrl);
     await this.setState({livepeerdone:true});
 
     var finalthumbnaillink = `https://ipfs.io/ipfs/${this.state.thumbnaillink}`;
@@ -292,11 +292,11 @@ export default class Creatorplatform extends Component {
     var cipherlink = CryptoJS.AES.encrypt(this.state.livepeeripfsvideourl.toString(), 'secret').toString();
     this.setState({livepeeripfsvideourl:cipherlink});
     today = dd + '/' + mm + '/' + yyyy;
-    console.log("title=",this.state.title);
-    console.log("LivepeerIPFSURL=",this.state.livepeeripfsvideourl);
-    console.log("creator=",this.state.account);
-    console.log("date uploaded=",today.toString());
-    console.log("final thumbnail link=",finalthumbnaillink.toString());
+    // console.log("title=",this.state.title);
+    // console.log("LivepeerIPFSURL=",this.state.livepeeripfsvideourl);
+    // console.log("creator=",this.state.account);
+    // console.log("date uploaded=",today.toString());
+    // console.log("final thumbnail link=",finalthumbnaillink.toString());
     try{
     await this.state.vidshield.methods.registerVideo(this.state.title.toString(),this.state.livepeeripfsvideourl.toString(),this.state.account,today.toString(),finalthumbnaillink).send({
       from: this.state.account
@@ -317,7 +317,7 @@ export default class Creatorplatform extends Component {
 mintNFT=async(event)=>{
   event.preventDefault();
   try{
-  console.log("nftmurl=",this.state.nftMetadataUrl);
+  //console.log("nftmurl=",this.state.nftMetadataUrl);
   //const nonce = await window.web3.eth.getTransactionCount(this.state.account, 'latest');
   await this.state.videonft.methods.mintNFT(this.state.account,this.state.nftMetadataUrl).send({'from':this.state.account})
   .then((result)=>{
@@ -352,7 +352,7 @@ reader.readAsArrayBuffer(file);
 
 reader.onloadend=()=>{
   this.setState({buffer:Buffer(reader.result)});
-  console.log("buffer",this.state.buffer);
+  //console.log("buffer",this.state.buffer);
 }
 }
 
@@ -362,7 +362,7 @@ uploadImage=(event)=>{
   //alert("hellooooooo");
   console.log("Submitting file to IPFS...");
 
-  console.log(this.state.buffer);
+  //console.log(this.state.buffer);
 
   ipfs.add(this.state.buffer,(error,result)=>{
     if(error)
@@ -371,7 +371,7 @@ uploadImage=(event)=>{
     }
     else
     {
-      console.log("ipfs hash",result);
+      //console.log("ipfs hash",result);
       alert("Your thumbnail is successfully uploaded");
       this.setState({thumbnaillink:result[0].hash,thumbnaildone:true});
     }

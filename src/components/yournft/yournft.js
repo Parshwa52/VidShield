@@ -43,7 +43,7 @@ this.getGatewayMetadata = this.getGatewayMetadata.bind(this);
       try {
         // Request account access if needed
         await window.ethereum.enable();
-        console.log(window.web3);
+        //console.log(window.web3);
         //console.log(web3.eth.getAccounts());
         // Acccounts now exposed
       } catch (error) {
@@ -53,7 +53,7 @@ this.getGatewayMetadata = this.getGatewayMetadata.bind(this);
     // Legacy dapp browsers...
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
-      console.log(window.web3);
+      //console.log(window.web3);
       // Acccounts always exposed
     }
     // Non-dapp browsers...
@@ -103,9 +103,9 @@ await axios(config)
   {
     var nftObj = new Object();
      var currnft = allnfts[i];
-     console.log("curr nft=",currnft);
-     console.log("token address=",currnft.token_address);
-     console.log("vidnftaddess=",vidnftaddress);
+     //console.log("curr nft=",currnft);
+     //console.log("token address=",currnft.token_address);
+     //console.log("vidnftaddess=",vidnftaddress);
       if(currnft.token_address==vidnftaddress.toLowerCase())
       {
         var tokenID= currnft.token_id;
@@ -125,7 +125,7 @@ await axios(config)
         }
         
         title = metadata.name;
-        console.log("metadata=",metadata);
+        //console.log("metadata=",metadata);
 
         thumbnailimg = metadata.image;
         thumbnailimg = thumbnailimg.replace("ipfs://","");
@@ -133,12 +133,12 @@ await axios(config)
         var thumbnaillink = `https://ipfs.io/ipfs/${thumbnailimg}`;
         var clickablelink = `https://testnets.opensea.io/assets/mumbai/${vidnftaddress}/${tokenID}`;
         //console.log(nftcontract);
-        console.log(tokenID);
+        //console.log(tokenID);
         //console.log(tokenInteger);
-        console.log(title);
-        console.log(thumbnailimg);
-        console.log(thumbnaillink);
-        console.log(clickablelink);
+        // console.log(title);
+        // console.log(thumbnailimg);
+        // console.log(thumbnaillink);
+        // console.log(clickablelink);
         nftObj.tokenInteger = tokenID;
         nftObj.title = title;
         nftObj.thumbnaillink = thumbnaillink;
@@ -150,7 +150,7 @@ await axios(config)
 })
 
 
-console.log("nftarray2",this.state.nftarray2);
+//console.log("nftarray2",this.state.nftarray2);
 
   }
 
@@ -167,8 +167,8 @@ console.log("nftarray2",this.state.nftarray2);
       this.setState({account:accounts[0]});
     }.bind(this));
 
-    console.log(web3);
-    console.log(accounts);
+    // console.log(web3);
+    // console.log(accounts);
    // 
    const networkId=await web3.eth.net.getId();
    //console.log(networkId);
@@ -225,13 +225,13 @@ console.log("nftarray2",this.state.nftarray2);
           thumbnailimg = thumbnailimg.replace("ipfs://","");
           var thumbnaillink = `https://ipfs.io/ipfs/${thumbnailimg}`;
           var clickablelink = `https://testnets.opensea.io/assets/mumbai/${nftcontract}/${tokenInteger}`;
-          console.log(nftcontract);
-          console.log(tokenID);
-          console.log(tokenInteger);
-          console.log(title);
-          console.log(thumbnailimg);
-          console.log(thumbnaillink);
-          console.log(clickablelink);
+          // console.log(nftcontract);
+          // console.log(tokenID);
+          // console.log(tokenInteger);
+          // console.log(title);
+          // console.log(thumbnailimg);
+          // console.log(thumbnaillink);
+          // console.log(clickablelink);
           nftObj.tokenInteger = tokenInteger;
           nftObj.title = title;
           nftObj.thumbnaillink = thumbnaillink;
@@ -242,7 +242,7 @@ console.log("nftarray2",this.state.nftarray2);
         context.setState({nftarray:nftarray,alchemyNFTerror:alchemyNFTerror});
         
         //context.setState({nftcontract:response.data.contract.address,title:response.data.title},thumbnail:response.data.)
-        console.log(JSON.stringify(response.data, null, 2))
+        //console.log(JSON.stringify(response.data, null, 2))
       })
       .catch(error => console.log(error));
 

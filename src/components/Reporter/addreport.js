@@ -47,7 +47,7 @@ export default class Reporter extends Component {
       try {
         // Request account access if needed
         await window.ethereum.enable();
-        console.log(window.web3);
+        //console.log(window.web3);
         //console.log(web3.eth.getAccounts());
         // Acccounts now exposed
       } catch (error) {
@@ -57,7 +57,7 @@ export default class Reporter extends Component {
     // Legacy dapp browsers...
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
-      console.log(window.web3);
+      //console.log(window.web3);
       // Acccounts always exposed
     }
     // Non-dapp browsers...
@@ -82,8 +82,8 @@ export default class Reporter extends Component {
       this.setState({account:accounts[0]});
     }.bind(this));
 
-    console.log(web3);
-    console.log(accounts);
+    //console.log(web3);
+    //console.log(accounts);
    // 
    const networkId=await web3.eth.net.getId();
     const networkdata=VidShield.networks[networkId];
@@ -94,7 +94,7 @@ export default class Reporter extends Component {
       const vidshield=new web3.eth.Contract(VidShield.abi,networkdata.address);
       await this.setState({vidshield});
       var requestcounter = await vidshield.methods.requestcounter().call();
-      console.log("req count=",requestcounter);
+      //console.log("req count=",requestcounter);
       this.setState({id:requestcounter});
     }
     
@@ -105,9 +105,9 @@ export default class Reporter extends Component {
       try
       {
       const videolink = `https://ipfs.io/ipfs/${this.state.ipfshash}`;
-        console.log(videolink);
+        //console.log(videolink);
         
-        console.log(this.state.pirateaddress);
+        //console.log(this.state.pirateaddress);
       await this.state.vidshield.methods.addReporter(this.state.account,videolink.toString(),this.state.pirateaddress).send({from: this.state.account}).then((result)=>{
           alert("Your report is filed");
       });
@@ -161,7 +161,7 @@ reader.readAsArrayBuffer(file);
 
 reader.onloadend=()=>{
   this.setState({buffer:Buffer(reader.result)});
-  console.log("buffer",this.state.buffer);
+  //console.log("buffer",this.state.buffer);
 }
 }
 
@@ -171,7 +171,7 @@ uploadVideo=(event)=>{
   //alert("hellooooooo");
   console.log("Submitting file to IPFS...");
 
-  console.log(this.state.buffer);
+  //console.log(this.state.buffer);
 
   ipfs.add(this.state.buffer,(error,result)=>{
     if(error)
@@ -180,7 +180,7 @@ uploadVideo=(event)=>{
     }
     else
     {
-      console.log("ipfs hash",result);
+      //console.log("ipfs hash",result);
       
       this.setState({ipfshash:result[0].hash});
         alert("File Uploaded Successfully to Filecoin storage");

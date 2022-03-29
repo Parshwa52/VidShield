@@ -51,7 +51,7 @@ class App extends Component {
       try {
         // Request account access if needed
         await window.ethereum.enable();
-        console.log(window.web3);
+        //console.log(window.web3);
         //console.log(web3.eth.getAccounts());
         // Acccounts now exposed
       } catch (error) {
@@ -61,7 +61,7 @@ class App extends Component {
     // Legacy dapp browsers...
     else if (window.web3) {
       window.web3 = new Web3(window.web3.currentProvider);
-      console.log(window.web3);
+      //console.log(window.web3);
       // Acccounts always exposed
     }
     // Non-dapp browsers...
@@ -84,7 +84,7 @@ class App extends Component {
       this.setState({account:accounts[0]});
     }.bind(this));
 
-    console.log(web3);
+    //console.log(web3);
     console.log(accounts);
    const networkId=await web3.eth.net.getId();
     const networkdata=VidShield.networks[networkId];
@@ -93,7 +93,7 @@ class App extends Component {
     if(networkdata)
     {
       const vidshield=new web3.eth.Contract(VidShield.abi,networkdata.address);
-      console.log("Vidshield=",vidshield);
+      //console.log("Vidshield=",vidshield);
     }
     else
     {
