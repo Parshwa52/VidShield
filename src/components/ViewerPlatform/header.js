@@ -25,6 +25,8 @@ const metaTransactionType = [
   { name: "functionSignature", type: "bytes" }
 ];
 
+require('dotenv').config();
+const { REACT_APP_BICONOMY_DAPP_KEY } = process.env;
 let domainData = {
   name: "VidShield",
   version: "1",
@@ -49,7 +51,7 @@ function Header(props) {
         await provider.enable();
         if (provider.networkVersion === "80001") {
           domainData.chainId = 80001;
-        const apikey = `${bickey.BICONOMY_DAPP_KEY}`;
+        const apikey = REACT_APP_BICONOMY_DAPP_KEY;
         const biconomy = new Biconomy(provider,{apiKey: apikey, debug: true});
         web3 = new Web3(biconomy);
         walletweb3 = new Web3(provider);

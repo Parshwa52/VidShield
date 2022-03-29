@@ -13,6 +13,8 @@ import Web3 from 'web3';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import '../../App';
+require('dotenv').config();
+const { REACT_APP_ALCHEMY_NFT_API_KEY , REACT_APP_MORALIS_NFT_API} = process.env;
 class yournft extends Component {
 
   constructor(props) {
@@ -87,10 +89,9 @@ var config = {
   url: `https://deep-index.moralis.io/api/v2/${this.state.account}/nft?chain=mumbai&format=decimal`,
   headers: { 
     'Accept': 'application/json', 
-    'x-api-key': `${keys.MORALIS_NFT_API}`
+    'x-api-key': `${REACT_APP_MORALIS_NFT_API}`
   }
 };
-
 await axios(config)
 .then(async function (response) {
 
@@ -190,7 +191,7 @@ await axios(config)
       //const balance = await videonft.methods.balanceOf("0x1E0745195BCcf063eBDAfB44731FaAD1e30b160C").call();
       //alert(balance);
       var context =  this;
-      const apiKey = keys.ALCHEMY_NFT_API_KEY;
+      const apiKey = REACT_APP_ALCHEMY_NFT_API_KEY;
       const baseURL = `https://polygon-mumbai.g.alchemy.com/${apiKey}/v1/getNFTs/`;
       // replace with the wallet address you want to query for NFTs
       //const ownerAddr = this.state.account;

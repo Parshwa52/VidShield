@@ -10,8 +10,8 @@ import config from "../../keys.json";
 //import '../../App';
 var CryptoJS = require("crypto-js");
 const axios = require('axios');
-const dotenv = require('dotenv');
-const env = dotenv.config().parsed;
+require('dotenv').config();
+const { REACT_APP_LIVEPEER_API_KEY } = process.env;
 
 
 const ipfsClient = require('ipfs-http-client');
@@ -122,7 +122,7 @@ export default class Creatorplatform extends Component {
       this.setState({id:vidcounter});
     }
     
-    const livepeerkey = config.LIVEPEER_API_KEY;
+    const livepeerkey = REACT_APP_LIVEPEER_API_KEY;
     this.setState({livepeerkey});
   }
 
