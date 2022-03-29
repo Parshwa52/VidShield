@@ -21,7 +21,7 @@ import Contact from './components/contact';
 import JsonData from './data/data.json';
 //import Identicon from 'identicon.js';
 import Web3 from 'web3';
-import { BrowserRouter as Router ,Switch,Route} from 'react-router-dom';
+import { HashRouter,Switch,Route} from 'react-router-dom';
 
 import './App.css';
 class App extends Component {
@@ -108,9 +108,9 @@ class App extends Component {
     return (
      
       
-        <Router>
+        <HashRouter>
           <div className="App">
-        <Switch>
+        
         <Route path="/" exact component={Home}></Route>
         <Route path="/Video" component={Video}></Route>
         
@@ -122,9 +122,9 @@ class App extends Component {
         <Route path="/allvideo" component={allvideo}></Route>
         <Route path="/yournft" component={yournft}></Route>
         <Route path="/allnft" component={allnft}></Route>
-        </Switch>
+        
         </div>
-        </Router>
+        </HashRouter>
      
      
       
