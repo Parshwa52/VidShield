@@ -19,19 +19,32 @@ export class Header extends Component {
                     {this.props.data ? this.props.data.paragraph : "Loading"}
                   </p>
                   
+                  <Link to={{
+                            pathname: '/CreatorDashBoard',
+                            
+                          }} >
+                  <input type="button" value="Let Set Go Creator"
                     
-                  <button
-                    onClick={() => window.open('/CreatorDashBoard')}
                     className="btn btn-custom btn-lg page-scroll"
-                  >
-                      Let Set Go Creator
-                  </button>{" "}
-                  <button
-                    onClick={() => window.open('/ViewerPlatform')}
+                  />
+                    
+                  {" "}
+                          </Link>
+
+                          <Link to={{
+                            pathname: '/ViewerPlatform',
+                            
+                          }} >
+                  <input type="button" value="Yo Stylish Viewer"
+                    
                     className="btn btn-custom btn-lg page-scroll"
-                  >
-                      Yo Stylish Viewer
-                  </button>{" "}
+                  />
+                    
+                  {" "}
+                          </Link>
+                    
+                  
+                  
                   
                   
                   
