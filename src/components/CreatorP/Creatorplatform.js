@@ -163,7 +163,10 @@ export default class Creatorplatform extends Component {
             url: 'https://livepeer.com/api/asset/request-upload',
             headers: { 
               'Authorization': `${this.state.livepeerkey}`, 
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Origin': '*', 
+              'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 
+              'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
             },
             data : data
           };
@@ -191,7 +194,10 @@ export default class Creatorplatform extends Component {
     method: 'put',
     url: this.state.uploadurls,
     headers: { 
-        'Content-Type': 'video/mp4'
+        'Content-Type': 'video/mp4',
+        'Access-Control-Allow-Origin': '*', 
+        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     },
     data : data2
     };
@@ -229,8 +235,11 @@ export default class Creatorplatform extends Component {
         url: makeurl,
         headers: { 
             'Authorization': `${this.state.livepeerkey}`, 
-          'Content-Type': 'application/json'
-        },
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*', 
+            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 
+            'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+              },
         data : data3
       };
       
@@ -262,7 +271,10 @@ export default class Creatorplatform extends Component {
       method: 'get',
       url: `https://livepeer.com/api/task/${this.state.taskID}`,
       headers: { 
-        'Authorization': `${this.state.livepeerkey}`
+        'Authorization': `${this.state.livepeerkey}`,
+        'Access-Control-Allow-Origin': '*', 
+        'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
       }
     };
     
