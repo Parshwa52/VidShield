@@ -5,9 +5,9 @@ import '../../App.css';
 import './Director.css';
 import {Biconomy} from "@biconomy/mexa";
 import Web3 from 'web3';
+import dotenv from 'dotenv';
 //import history from '../history';
 import {Link} from 'react-router-dom';
-import bickey from "../../keys.json";
 let sigUtil = require("eth-sig-util");
 const { config } = require("../config");
 
@@ -25,8 +25,7 @@ const metaTransactionType = [
   { name: "functionSignature", type: "bytes" }
 ];
 
-require('dotenv').config();
-const { REACT_APP_BICONOMY_DAPP_KEY } = process.env;
+dotenv.config();
 let domainData = {
   name: "VidShield",
   version: "1",
@@ -51,8 +50,8 @@ function Header(props) {
         await provider.enable();
         if (provider.networkVersion === "80001") {
           domainData.chainId = 80001;
-        const apikey = REACT_APP_BICONOMY_DAPP_KEY;
-        const biconomy = new Biconomy(provider,{apiKey: apikey, debug: true});
+        const apikey = process.env.REACT_APP_BICONOMY_DAPP_KEY;
+        const biconomy = new Biconomy(provider,{apiKey: `${apikey}`, debug: true});
         web3 = new Web3(biconomy);
         walletweb3 = new Web3(provider);
         biconomy.onEvent(biconomy.READY, () => {

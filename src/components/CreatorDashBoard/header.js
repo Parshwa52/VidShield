@@ -7,7 +7,7 @@ import {Biconomy} from "@biconomy/mexa";
 import Web3 from 'web3';
 //import history from '../history';
 import {Link} from 'react-router-dom';
-import bickey from "../../keys.json";
+import dotenv from 'dotenv';
 let sigUtil = require("eth-sig-util");
 const { config } = require("../config");
 
@@ -23,8 +23,7 @@ const metaTransactionType = [
   { name: "from", type: "address" },
   { name: "functionSignature", type: "bytes" }
 ];
-require('dotenv').config();
-const { REACT_APP_BICONOMY_DAPP_KEY } = process.env;
+dotenv.config();
 
 let domainData = {
   name: "VidShield",
@@ -50,8 +49,8 @@ function Header(props) {
         await provider.enable();
         if (provider.networkVersion === "80001") {
           domainData.chainId = 80001;
-        const apikey = REACT_APP_BICONOMY_DAPP_KEY;
-        const biconomy = new Biconomy(provider,{apiKey: apikey , debug: true});
+        const apikey = process.env.REACT_APP_BICONOMY_DAPP_KEY;
+        const biconomy = new Biconomy(provider,{apiKey: `${apikey}` , debug: true});
         web3 = new Web3(biconomy);
         walletweb3 = new Web3(provider);
         biconomy.onEvent(biconomy.READY, () => {
@@ -149,7 +148,7 @@ function Header(props) {
           });
       }
     } else {
-      console.log("Please enter the quote");
+      console.log("");
     }
   };
 

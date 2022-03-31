@@ -6,12 +6,7 @@ import VideoNFT from '../../abis/VideoNFT.json';
 import Navigation from './navigation';
 import Header from './header.js';
 import Features from './features';
-import config from "../../keys.json";
 //import '../../App';
-var CryptoJS = require("crypto-js");
-const axios = require('axios');
-const dotenv = require('dotenv');
-const env = dotenv.config().parsed;
 
 
 const ipfsClient = require('ipfs-http-client');

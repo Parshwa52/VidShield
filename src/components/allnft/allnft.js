@@ -8,13 +8,11 @@ import Navigation from './navigation';
 import Header from './header2.js';
 import Features from './features';
 import axios from 'axios';
-import keys from '../../keys.json';
 import Web3 from 'web3';
 import { BrowserRouter as Router } from 'react-router-dom';
-
+import dotenv from 'dotenv';
 import '../../App';
-require('dotenv').config();
-const { REACT_APP_ALCHEMY_NFT_API_KEY,REACT_APP_MORALIS_NFT_API } = process.env;
+dotenv.config();
 class allnft extends Component {
 
   constructor(props) {
@@ -97,7 +95,7 @@ var config = {
   url: `https://deep-index.moralis.io/api/v2/nft/${vidnftaddress}/${tokenid}?chain=mumbai&format=decimal`,
   headers: { 
     'Accept': 'application/json', 
-    'x-api-key': `${REACT_APP_MORALIS_NFT_API}`
+    'x-api-key': `${process.env.REACT_APP_MORALIS_NFT_API}`
   }
 };
 
@@ -175,8 +173,7 @@ await axios(config)
 
       var context =  this;
       var i;
-      const apiKey = REACT_APP_ALCHEMY_NFT_API_KEY;
-      console.log("apikey alchemy=",apiKey);
+      const apiKey = process.env.REACT_APP_ALCHEMY_NFT_API_KEY;
       const baseURL = `https://polygon-mumbai.g.alchemy.com/${apiKey}/v1/getNFTMetadata`;
       
       const contractAddr = nwdata_videonft.address;

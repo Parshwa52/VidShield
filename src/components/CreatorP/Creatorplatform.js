@@ -6,12 +6,11 @@ import VideoNFT from '../../abis/VideoNFT.json';
 import Navigation from './navigation';
 import Header from './header.js';
 import Features from './features';
-import config from "../../keys.json";
+import dotenv from 'dotenv';
 //import '../../App';
 var CryptoJS = require("crypto-js");
 const axios = require('axios');
-require('dotenv').config();
-const { REACT_APP_LIVEPEER_API_KEY } = process.env;
+dotenv.config();
 
 
 const ipfsClient = require('ipfs-http-client');
@@ -122,7 +121,7 @@ export default class Creatorplatform extends Component {
       this.setState({id:vidcounter});
     }
     
-    const livepeerkey = REACT_APP_LIVEPEER_API_KEY;
+    const livepeerkey = process.env.REACT_APP_LIVEPEER_API_KEY;
     this.setState({livepeerkey});
   }
 

@@ -140,8 +140,8 @@ class ViewerPlatform extends Component {
       {
         var videodata = await vidshield.methods.getVideoData(i).call();
         var creator = videodata.creator;
-        console.log("vid creator=",creator);
-        console.log("currcreator=",currcreator);
+        //console.log("vid creator=",creator);
+        //console.log("currcreator=",currcreator);
         if(creator==currcreator)
         {
           var videoobj = new Object();
