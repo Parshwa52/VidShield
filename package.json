@@ -2,7 +2,7 @@
   "name": "VidShield",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://livepeer.com/",
+  "proxy": "https://livepeer.com",
   "dependencies": {
     "@biconomy/mexa": "^2.0.30",
     "@fortawesome/fontawesome-free": "^5.15.1",
