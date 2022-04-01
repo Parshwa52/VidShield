@@ -2,7 +2,6 @@
   "name": "VidShield",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://livepeer.com",
   "dependencies": {
     "@biconomy/mexa": "^2.0.30",
     "@fortawesome/fontawesome-free": "^5.15.1",
@@ -18,6 +17,7 @@
     "env-cmd": "^10.1.0",
     "eth-sig-util": "^3.0.1",
     "history": "^5.0.0",
+    "http-proxy-middleware": "^2.0.4",
     "identicon.js": "^2.3.3",
     "ipfs-http-client": "^33.1.1",
     "mdbreact": "^5.0.1",
