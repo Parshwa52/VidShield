@@ -174,10 +174,6 @@ export default class Creatorplatform extends Component {
           
           await axios(config)
           .then(function (response) {
-            console.log({response});
-            console.log(response.headers);
-            response.headers["access-control-allow-origin"]="*";
-            console.log("after=",response.headers);
             //console.log(JSON.stringify(response.data));
             //uploadUrl = JSON.stringify(response.data).url;
             context.setState({uploadurls:response.data.url,assetID:response.data.asset.id});
@@ -197,7 +193,7 @@ export default class Creatorplatform extends Component {
 
     var config2 = {
     method: 'put',
-    url: this.state.uploadurls,
+    url: `https://cors-anywhere.herokuapp.com/${this.state.uploadurls}`,
     headers: { 
         'Content-Type': 'video/mp4',
         'Access-Control-Allow-Origin': '*', 
@@ -210,7 +206,6 @@ export default class Creatorplatform extends Component {
 
     await axios(config2)
     .then(function (response) {
-      response.headers["access-control-allow-origin"]="*";
         //console.log("SUCCESS");
     //console.log(JSON.stringify(response.data));
     alert("Video Processing done and uploaded");
@@ -255,7 +250,6 @@ export default class Creatorplatform extends Component {
       .then(function (response) {
           //console.log("EXPORT SUCCESS");
         //console.log("Export response",JSON.stringify(response.data));
-        response.headers["access-control-allow-origin"]="*";
         context.setState({taskID:response.data.task.id});
         alert("Video exported to IPFS storage");
       })
@@ -290,7 +284,6 @@ export default class Creatorplatform extends Component {
     
     await axios(config4)
     .then(function (response) {
-      response.headers["access-control-allow-origin"]="*";
       //console.log(JSON.stringify(response.data));
       context.setState({livepeeripfsvideourl:response.data.output.export.ipfs.videoFileGatewayUrl,
       nftMetadataUrl:response.data.output.export.ipfs.nftMetadataUrl });
