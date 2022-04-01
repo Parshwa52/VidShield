@@ -160,7 +160,7 @@ export default class Creatorplatform extends Component {
           
           var config = {
             method: 'post',
-            url: 'https://livepeer.com/api/asset/request-upload',
+            url: 'https://cors-anywhere.herokuapp.com/https://livepeer.com/api/asset/request-upload',
             headers: { 
               'Authorization': `${this.state.livepeerkey}`, 
               'Content-Type': 'application/json',
@@ -168,7 +168,8 @@ export default class Creatorplatform extends Component {
               'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 
               'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
             },
-            data : data
+            data : data,
+            crossDomain: true
           };
           
           await axios(config)
@@ -203,7 +204,8 @@ export default class Creatorplatform extends Component {
         'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     },
-    data : data2
+    data : data2,
+    crossDomain: true
     };
 
     await axios(config2)
@@ -234,7 +236,7 @@ export default class Creatorplatform extends Component {
         }
       });
       
-      var makeurl = `https://livepeer.com/api/asset/${this.state.assetID}/export`;
+      var makeurl = `https://cors-anywhere.herokuapp.com/https://livepeer.com/api/asset/${this.state.assetID}/export`;
       var config3 = {
         method: 'post',
         url: makeurl,
@@ -245,7 +247,8 @@ export default class Creatorplatform extends Component {
             'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 
             'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
               },
-        data : data3
+        data : data3,
+        crossDomain: true
       };
       
       await axios(config3)
@@ -275,13 +278,14 @@ export default class Creatorplatform extends Component {
   var context =  this;
   var config4 = {
       method: 'get',
-      url: `https://livepeer.com/api/task/${this.state.taskID}`,
+      url: `https://cors-anywhere.herokuapp.com/https://livepeer.com/api/task/${this.state.taskID}`,
       headers: { 
         'Authorization': `${this.state.livepeerkey}`,
         'Access-Control-Allow-Origin': '*', 
         'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS', 
         'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-      }
+      },
+      crossDomain: true
     };
     
     await axios(config4)
