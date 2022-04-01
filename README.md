@@ -27,6 +27,10 @@ VidShield is an all-in-one platform.
 
 7) It is also NFT Marketplace for viewers to buy NFTs.
 
+## Deployed Dapp Link
+
+https://vidshield-3eb7ob.argoapp.io/#/
+
 ## Methodology and technology integrations
 
 a) The video streaming and video NFT is done with the help of Livepeer API.
