@@ -160,7 +160,7 @@ export default class Creatorplatform extends Component {
           
           var config = {
             method: 'post',
-            url: '/api/asset/request-upload',
+            url: 'https://livepeer.com/api/asset/request-upload',
             headers: { 
               'Authorization': `${this.state.livepeerkey}`, 
               'Content-Type': 'application/json',
@@ -229,7 +229,7 @@ export default class Creatorplatform extends Component {
         }
       });
       
-      var makeurl = `/api/asset/${this.state.assetID}/export`;
+      var makeurl = `https://livepeer.com/api/asset/${this.state.assetID}/export`;
       var config3 = {
         method: 'post',
         url: makeurl,
@@ -269,7 +269,7 @@ export default class Creatorplatform extends Component {
   var context =  this;
   var config4 = {
       method: 'get',
-      url: `/api/task/${this.state.taskID}`,
+      url: `https://livepeer.com/api/task/${this.state.taskID}`,
       headers: { 
         'Authorization': `${this.state.livepeerkey}`,
         'Access-Control-Allow-Origin': '*', 
