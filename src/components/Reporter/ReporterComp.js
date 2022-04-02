@@ -29,6 +29,8 @@ export default class ReporterComp extends Component {
     
 
     return (
+      <div>
+      {this.props.allowed?
       <div className="row">
         <Segment inverted color="black">
         <h1>Here is the list of all requests:</h1>
@@ -55,15 +57,15 @@ export default class ReporterComp extends Component {
               </div>
                 ))
               : "Loading..."}
-         
-      
-
-        
-        
       </Grid>
       </Segment>
       </Segment>
       </div>
-    )
+      :
+      <div>
+      <h1>Not allowed to review</h1>
+      </div>}
+      </div>
+    );
   }
 }

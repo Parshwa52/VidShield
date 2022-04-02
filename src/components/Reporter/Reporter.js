@@ -19,7 +19,8 @@ import React, {
       
       this.state = {
         totrequests:[],
-        vidshield:null
+        vidshield:null,
+        allowed:true
       };
       this.blockpirate = this.blockpirate.bind(this);
       this.cancelRequest = this.cancelRequest.bind(this);
@@ -110,7 +111,7 @@ import React, {
     else
     {
       alert("Unauthorized Account");
-      window.close();
+      this.setState({allowed:false}); 
     }
       
       
@@ -176,10 +177,10 @@ import React, {
           <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-<Navigation account ={this.state.account}/>
-        <Header1 title="Check Requests" paragraph={this.state.account}/>
+<Navigation account ={this.state.account} allowed={this.state.allowed}/>
+        <Header1 title="Check Requests" paragraph={this.state.account} allowed={this.state.allowed}/>
             
-        <ReporterComp data={this.state.totrequests} blockpirate={this.blockpirate} cancelRequest={this.cancelRequest}/>
+        <ReporterComp data={this.state.totrequests} blockpirate={this.blockpirate} cancelRequest={this.cancelRequest} allowed={this.state.allowed}/>
         </div>
       );
     }

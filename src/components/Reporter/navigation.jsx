@@ -4,6 +4,7 @@ export class Navigation extends Component {
   render() {
     return (
       <nav id="menu" className="navbar navbar-default navbar-fixed-top">
+        {this.props.allowed?
         <div className="container">
           <div className="navbar-header">
             <button
@@ -30,6 +31,9 @@ export class Navigation extends Component {
             
           </div>
         </div>
+        :
+        <div><h1>Not allowed to review</h1></div>
+        }
       </nav>
     );
   }

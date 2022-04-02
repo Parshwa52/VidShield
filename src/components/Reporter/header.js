@@ -7,7 +7,9 @@ export class Header extends Component {
   
   render() {
     return (
+      
       <header id="header">
+        {this.props.allowed?
         <div className="intro215">
           <div className="overlay2">
             <div className="container">
@@ -26,7 +28,14 @@ export class Header extends Component {
           </div>
          
         </div>
+          
+          :
+          <div>
+            <h1>Not allowed to Review</h1>
+          </div>
+          }
       </header>
+      
     );
   }
 }
