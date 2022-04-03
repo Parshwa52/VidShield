@@ -1,4 +1,5 @@
-#  🔥💰VidShield 🥇😎
+#  🚀🔥💰VidShield 🥇😎🚀
+
 
 ## 🥇🤖 A Creator platform with Video NFT and Piracy protection 💰🔥
 
@@ -45,8 +46,11 @@ e) User can onboard the platform using gasless onboarding using Biconomy.
 
 f) All the video thumbnails and the reporter’s pirated video is stored on Filecoin IPFS Storage.
 
-I was successful in integrating different tech stacks in my application by deeply reading their documentation, trying their hello world projects and joining their discord community(here, most of my errors got solved). I would like to thank :[Livepeer](https://livepeer.org/)
-, [Polygon](https://polygon.technology/), [Alchemy](https://dashboard.alchemyapi.io/), [Biconomy](https://www.biconomy.io/), [Filecoin](https://filecoin.io/) for the easy documentation and active community support they provide.
+g) I was successful in integrating different tech stacks in my application by deeply reading their documentation, trying their hello world projects and joining their discord community(here, most of my errors got solved).
+
+h) My complete dapp with all above technologies and features integrated is deployed on Spheron.
+
+i) I would like to thank : Livepeer, Polygon, Alchemy, Biconomy, Filecoin, Spheron, Moralis for the easy documentation and active community support they provide.
 
 ## Use Case Diagram
 
