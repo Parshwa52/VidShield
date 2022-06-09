@@ -175,7 +175,7 @@ class Video extends Component {
            <center>
       <header>
   
-    <video src={this.state.livepeerlink} autoplay="autoplay" controls controlsList="nodownload" onKeyDown={e=>e.preventDefault()}></video>
+    <video src={this.state.livepeerlink} autoplay="autoplay" controls controlsList="nodownload" disablePictureInPicture onKeyDown={e=>e.preventDefault()}></video>
     <div class="overlay">
         <h1 id='abcd'>{this.state.account}</h1>
     </div>
